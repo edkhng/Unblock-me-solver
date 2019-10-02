@@ -1,15 +1,28 @@
 """
+==================
 Unblock me solver
-"""
+==================
 
-'''
+Description of the game:
+
+Unblock Me is a mobile game by Kira Games that contains numerous puzzles of
+different difficulty. The puzzle involves blocks that are 2 units or 3 units
+long, oriented vertically or horizontally placed in a 6x6 grid. The blocks can
+only move parallel to their orientation. There is a single red block in the
+puzzle oriented horizontally, and an opening in the right edge of the grid with
+a width of 1 unit placed 2 units from the top of the grid and 3 from the
+bottom. The puzzle is complete when the red block can be moved into the
+opening without any other blocks in the way.
+
+
+Outline:
 - '0' represents an empty space
 - blocks are represented with numbers
 - the red block is '1'
-- hard to visualize and initialize but hopefully simple to code without
+- hard to visualize, and initialize but hopefully simple to code without
   needing to make different classes to represent the blocks
 
-Example 1
+Example 1 (Trivial Case)
 
 Starting State:            End State:
 0  0  0  0  0  0           0  0  0  0  0  0
@@ -20,8 +33,8 @@ Starting State:            End State:
 0  0  0  0  0  0           0  0  0  0  0  0
 
 Steps: (Not sure how to save the steps yet, formate might change)
-(There are several steps to get to the same end state)
-e.g., [(Block 1, right 4)] or [(Block 1, right 2), (Block 1, right 2)] as an example
+[(Block 1, right 4)]
+
 
 
 Example 2
@@ -35,11 +48,11 @@ Starting State:            End State: (There are several end states)
 0  0  0  0  0  0           0  0  0  2  0  0      0  0  0  2  0  0      0  0  0  2  0  0
 
 Steps: (Several end states and several different steps to get to each end state)
-This is just an example
+This is just an example set of steps to get to the first end state
 [(Block 3, left 2), (Block 2, down 3), (Block 1, right 4)]
 
 
-Example 3 (Puzzle 33 Advanced)
+Example 3 (From advanced puzzle 33 in the game)
 
 Starting State:            End State: (There are several end states)
 2   2   3   3   4   5           2   2   3   3  4   5
@@ -50,6 +63,15 @@ Starting State:            End State: (There are several end states)
 0   12  13  14  14  14          14  14  14  7  8   9
 
 Steps: (The ones I used in solving this)
- [(Block 7, down 1), (Block 8, down 1), (Block 9, down 1), (Block 4, down 1), 
- (Block 5, down 1),]
-'''
+ [(Block 7, down 1), (Block 8, down 1), (Block 9, down 1), (Block 4, down 1),
+  (Block 5, down 1), (Block 3, right 2), (Block 10, down 1), (Block 2, right 1),
+  (Block 6, up 1), (Block 1, left 1), (Block 11, left 1), (Block 13, up 3),
+  (Block 7, up 2), (Block 11, right 2), (Block 10, up 1), (Block 12, up 1),
+  (Block 14, left 3), (Block 8, down 1), (Block 9, down 1), (Block 11, right 2),
+  (Block 13, down 2), (Block 7, down 3), (Block 1, right 2), (Block 6, down 1),
+  (Block 2, left 1), (Block 3, left 2), (Block 4, up 1), (Block 5, up 1),
+  (Block 1, right 2)]
+
+"""
+
+# How to input the puzzle, as a 1D list/array? I'm just using numbers to represent all the blocks
