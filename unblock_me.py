@@ -86,6 +86,10 @@ grid_pos = [ 0,  1,  2,  3,  4,  5,
             24, 25, 26, 27, 28, 29,
             30, 31, 32, 33, 34, 35]
 
+# block is Int
+# board is listofInt
+# step is String
+# solution is listofString
 
 def unblock_me(puzzle):
     """Main function that takes the puzzle and returns a list of moves
@@ -93,19 +97,23 @@ def unblock_me(puzzle):
 
     # board is the current state of the puzzle
     board = puzzle
+    solution = []
+    list_board = []  # keep track of all the iterations of board
+    list_board.append(board)
     N_blocks = max(puzzle)
 
     flag = False  # change to true when complete
     while flag == False:
+        # iterate through every block
+        # don't know how to backtrack
+        for i in range(1, N_blocks+1):
+            if uf.check_can_move_block(i, board):
+                step = uf.move_block(i, board)
+                uf.update_board(i, board, list_board, step)
+                uf.update_solution(i, step, solution)
 
-
-
-
-
-
-
-
-        if uf.get_block_pos(1, board) == 16, 17:
-            flag = True
+                # solved when block 1 is at the left edge
+                if uf.get_block_pos(1, board) == 16, 17:
+                    flag = True
 
     return solution
