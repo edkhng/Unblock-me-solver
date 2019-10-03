@@ -93,11 +93,26 @@ def check_top_edge(block, board):
         return False
 
 
-# def update_board(block, board, list_board, step):
-#     """Implement the step and update the board accordingly."""
-#
-#
-#
+def update_board(block, board, list_board, step):
+    """Implement the step and update the board accordingly."""
+    pos = get_block_pos(block, board)
+    if step == 'right':
+        board[pos[0]] = 0
+        board[pos[-1] + 1] = block
+    elif step == 'left':
+        board[pos[-1]] = 0
+        board[pos[0] - 1] = block
+    elif step == 'up':
+        board[pos[-1]] = 0
+        board[pos[0] - 6] = block
+    elif step == 'down':
+        board[pos[0]] = 0
+        board[pos[-1] + 6] = block
+
+    list_board.append(board)
+    return board
+
+
 # def update_solution(block, step, solution):
 #     """Include the step into the solution."""
 #

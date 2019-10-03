@@ -8,6 +8,13 @@ puzzle1 = [0, 0, 0, 0, 0, 0,
            0, 0, 0, 0, 0, 0,
            0, 0, 0, 0, 0, 0]
 
+puzzle1_1 = [0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0,
+             0, 1, 1, 0, 0, 0,
+             0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0]
+
 puzzle2 = [0, 0, 0, 2, 0, 0,
            0, 0, 0, 2, 0, 0,
            1, 1, 0, 2, 0, 0,
@@ -15,12 +22,33 @@ puzzle2 = [0, 0, 0, 2, 0, 0,
            0, 0, 3, 3, 4, 0,
            0, 0, 0, 0, 0, 0]
 
+puzzle2_1 = [0, 0, 0, 2, 0, 0,
+           0, 0, 0, 2, 0, 0,
+           1, 1, 0, 2, 0, 0,
+           0, 0, 0, 0, 4, 0,
+           0, 3, 3, 0, 4, 0,
+           0, 0, 0, 0, 0, 0]
+
+puzzle2_2 = [0, 0, 0, 2, 0, 0,
+             0, 0, 0, 2, 0, 0,
+             1, 1, 0, 2, 4, 0,
+             0, 0, 0, 0, 4, 0,
+             0, 3, 3, 0, 0, 0,
+             0, 0, 0, 0, 0, 0]
+
 puzzle3 = [2,  2,  3,  3,  4,  5,
            6,  0,  0,  7,  4,  5,
            6,  1,  1,  7,  8,  9,
            10, 11, 11, 7,  8,  9,
            10, 12, 13, 0,  0,  0,
            0,  12, 13, 14, 14, 14]
+
+puzzle3_1 = [2,  2,  3,  3,  4,  5,
+           6,  0,  0,  7,  4,  5,
+           6,  1,  1,  7,  8,  9,
+           0, 11, 11, 7,  8,  9,
+           10, 12, 13, 0,  0,  0,
+           10,  12, 13, 14, 14, 14]
 
 
 class TestCheckHorizontal(unittest.TestCase):
@@ -182,6 +210,31 @@ class TestCheckCanMoveBlock(unittest.TestCase):
         """Can return true if a vertical block is free to move in one way?"""
         bool = check_can_move_block(2, puzzle2)
         self.assertTrue(bool)
+
+
+class TestUpdateBoard(unittest.TestCase):
+    """Test update_board() function."""
+
+
+    def test_move_right(self):
+        """Can it move a block right?"""
+        board = update_board(1, puzzle1, [], 'right')
+        self.assertEqual(board, puzzle1_1)
+
+    def test_move_left(self):
+        """Can it move a block left?"""
+        board = update_board(3, puzzle2, [], 'left')
+        self.assertEqual(board, puzzle2_1)
+
+    def test_move_up(self):
+        """Can it move a block up?"""
+        board = update_board(4, puzzle2, [], 'up')
+        self.assertEqual(board, puzzle2_2)
+
+    def test_move_down(self):
+        """Can it move a block down?"""
+        board = update_board(10, puzzle3, [], 'down')
+        self.assertEqual(board, puzzle3_1)
 
 
 # class TestUnblockMe(unittest.TestCase):
