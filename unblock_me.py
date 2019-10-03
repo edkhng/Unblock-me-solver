@@ -73,5 +73,39 @@ Steps: (The ones I used in solving this)
   (Block 1, right 2)]
 
 """
-
+import unblock_me_functions as uf
 # How to input the puzzle, as a 1D list/array? I'm just using numbers to represent all the blocks
+
+# puzzle is list of numbers 36 elements long
+# horizontal blocks are numbers next to each other, vertical are seperated by 6 apart
+
+grid_pos = [ 0,  1,  2,  3,  4,  5,
+             6,  7,  8,  9, 10, 11,
+            12, 13, 14, 15, 16, 17,
+            18, 19, 20, 21, 22, 23,
+            24, 25, 26, 27, 28, 29,
+            30, 31, 32, 33, 34, 35]
+
+
+def unblock_me(puzzle):
+    """Main function that takes the puzzle and returns a list of moves
+       that solves the puzzle. """
+
+    # board is the current state of the puzzle
+    board = puzzle
+    N_blocks = max(puzzle)
+
+    flag = False  # change to true when complete
+    while flag == False:
+
+
+
+
+
+
+
+
+        if uf.get_block_pos(1, board) == 16, 17:
+            flag = True
+
+    return solution
