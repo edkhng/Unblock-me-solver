@@ -212,28 +212,56 @@ class TestCheckCanMoveBlock(unittest.TestCase):
         self.assertTrue(bool)
 
 
+class TestMoveBlock(unittest.TestCase):
+    """Test move_block() function."""
+
+
+    def test_step_right(self):
+        """Can it step right?"""
+        step = move_block(1, puzzle1)
+        self.assertEqual(step, 'right')
+
+
+    def test_step_left(self):
+        """Can it step right?"""
+        step = move_block(3, puzzle2)
+        self.assertEqual(step, 'left')
+
+
+    def test_step_up(self):
+        """Can it step up?"""
+        step = move_block(10, puzzle3_1)
+        self.assertEqual(step, 'up')
+
+
+    def test_step_down(self):
+        """Can it step down?"""
+        step = move_block(2, puzzle2)
+        self.assertEqual(step, 'down')
+
+
 class TestUpdateBoard(unittest.TestCase):
     """Test update_board() function."""
 
 
     def test_move_right(self):
         """Can it move a block right?"""
-        board = update_board(1, puzzle1, [], 'right')
+        board, list_board = update_board(1, puzzle1, [], 'right')
         self.assertEqual(board, puzzle1_1)
 
     def test_move_left(self):
         """Can it move a block left?"""
-        board = update_board(3, puzzle2, [], 'left')
+        board, list_board = update_board(3, puzzle2, [], 'left')
         self.assertEqual(board, puzzle2_1)
 
     def test_move_up(self):
         """Can it move a block up?"""
-        board = update_board(4, puzzle2, [], 'up')
+        board, list_board = update_board(4, puzzle2, [], 'up')
         self.assertEqual(board, puzzle2_2)
 
     def test_move_down(self):
         """Can it move a block down?"""
-        board = update_board(10, puzzle3, [], 'down')
+        board, list_board = update_board(10, puzzle3, [], 'down')
         self.assertEqual(board, puzzle3_1)
 
 

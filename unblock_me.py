@@ -109,11 +109,31 @@ def unblock_me(puzzle):
         for i in range(1, N_blocks+1):
             if uf.check_can_move_block(i, board):
                 step = uf.move_block(i, board)
-                uf.update_board(i, board, list_board, step)
-                uf.update_solution(i, step, solution)
-
+                board, list_board = uf.update_board(i, board, list_board, step)
+                solution.append("Block {}; {}".format(i,step))
                 # solved when block 1 is at the left edge
-                if uf.get_block_pos(1, board) == 16, 17:
+                if uf.get_block_pos(1, board) == [16, 17]:
                     flag = True
 
-    return solution
+    return solution, list_board
+
+
+puzzle1 = [0, 0, 0, 0, 0, 0,
+           0, 0, 0, 0, 0, 0,
+           1, 1, 0, 0, 0, 0,
+           0, 0, 0, 0, 0, 0,
+           0, 0, 0, 0, 0, 0,
+           0, 0, 0, 0, 0, 0]
+
+puzzle2 = [0, 0, 0, 2, 0, 0,
+           0, 0, 0, 2, 0, 0,
+           1, 1, 0, 2, 0, 0,
+           0, 0, 0, 0, 4, 0,
+           0, 0, 3, 3, 4, 0,
+           0, 0, 0, 0, 0, 0]
+
+
+# solution1, list_board1 = unblock_me(puzzle1)
+solution2, list_board2 = unblock_me(puzzle2)
+
+print(solution2)
