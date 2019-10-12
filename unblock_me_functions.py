@@ -102,7 +102,7 @@ def move_block(block, board):
                 return 'right'
             else:
                 return 'left'
-            
+
         else:
             if board[pos[0] - 1] == 0 and board[pos[-1] + 1] == 0:
                 from numpy.random import rand
@@ -155,3 +155,19 @@ def update_board(block, board, list_board, step):
     list_board.append(board)
     return board, list_board
 
+
+def visualize_solution(list_board):
+    """Print the board to show the progression of steps."""
+    for i in range(len(list_board)):
+        visualize_board(list_board[i])
+
+
+def visualize_board(board):
+    """Print the list of numbers representing the board
+       in a 6x6 grid for visualization."""
+    print("[{:2d} {:2d} {:2d} {:2d} {:2d} {:2d}\n"
+          " {:2d} {:2d} {:2d} {:2d} {:2d} {:2d}\n"
+          " {:2d} {:2d} {:2d} {:2d} {:2d} {:2d}\n"
+          " {:2d} {:2d} {:2d} {:2d} {:2d} {:2d}\n"
+          " {:2d} {:2d} {:2d} {:2d} {:2d} {:2d}\n"
+          " {:2d} {:2d} {:2d} {:2d} {:2d} {:2d}]".format(*board))

@@ -42,7 +42,7 @@ Example 2
 Starting State:            End State: (There are several end states)
 0  0  0  2  0  0           0  0  0  0  0  0      0  0  0  0  0  0      0  0  0  0  0  0
 0  0  0  2  0  0           0  0  0  0  0  0      0  0  0  0  0  0      0  0  0  0  0  0
-1  1  0  2  0  0  ------>  0  0  0  0  1  1  or  0  0  0  0  1  1  or  0  0  0  0  1  1
+0  1  1  2  0  0  ------>  0  0  0  0  1  1  or  0  0  0  0  1  1  or  0  0  0  0  1  1
 0  0  0  0  0  0           0  0  0  2  0  0      0  0  0  2  0  0      0  0  0  2  0  0
 0  0  3  3  0  0           0  3  3  2  0  0      3  3  0  2  0  0      0  0  0  2  3  3
 0  0  0  0  0  0           0  0  0  2  0  0      0  0  0  2  0  0      0  0  0  2  0  0
@@ -132,8 +132,19 @@ puzzle2 = [0, 0, 0, 2, 0, 0,
            0, 0, 3, 3, 4, 0,
            0, 0, 0, 0, 0, 0]
 
+puzzle3 = [2,  2,  3,  3,  4,  5,
+           6,  0,  0,  7,  4,  5,
+           6,  1,  1,  7,  8,  9,
+           10, 11, 11, 7,  8,  9,
+           10, 12, 13, 0,  0,  0,
+           0,  12, 13, 14, 14, 14]
+
 
 # solution1, list_board1 = unblock_me(puzzle1)
-solution2, list_board2 = unblock_me(puzzle2)
 
-print(solution2)
+solution2, list_board2 = unblock_me(puzzle1)
+
+print(len(list_board2))
+print(len(solution2))
+
+uf.visualize_solution(list_board2)
