@@ -136,24 +136,24 @@ def move_block(block, board):
                 return 'down'
 
 
-def update_board(block, board, list_board, step):
+def update_board(block, board, step):
     """Implement the step and update the board accordingly."""
     pos = get_block_pos(block, board)
+    new_board = board.copy()
     if step == 'right':
-        board[pos[0]] = 0
-        board[pos[-1] + 1] = block
+        new_board[pos[0]] = 0
+        new_board[pos[-1] + 1] = block
     elif step == 'left':
-        board[pos[-1]] = 0
-        board[pos[0] - 1] = block
+        new_board[pos[-1]] = 0
+        new_board[pos[0] - 1] = block
     elif step == 'up':
-        board[pos[-1]] = 0
-        board[pos[0] - 6] = block
+        new_board[pos[-1]] = 0
+        new_board[pos[0] - 6] = block
     elif step == 'down':
-        board[pos[0]] = 0
-        board[pos[-1] + 6] = block
+        new_board[pos[0]] = 0
+        new_board[pos[-1] + 6] = block
 
-    list_board.append(board)
-    return board, list_board
+    return new_board
 
 
 def visualize_solution(list_board):
@@ -170,4 +170,4 @@ def visualize_board(board):
           " {:2d} {:2d} {:2d} {:2d} {:2d} {:2d}\n"
           " {:2d} {:2d} {:2d} {:2d} {:2d} {:2d}\n"
           " {:2d} {:2d} {:2d} {:2d} {:2d} {:2d}\n"
-          " {:2d} {:2d} {:2d} {:2d} {:2d} {:2d}]".format(*board))
+          " {:2d} {:2d} {:2d} {:2d} {:2d} {:2d}]\n".format(*board))

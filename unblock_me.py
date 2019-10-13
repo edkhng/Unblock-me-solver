@@ -98,8 +98,8 @@ def unblock_me(puzzle):
     # board is the current state of the puzzle
     board = puzzle
     solution = []
-    list_board = []  # keep track of all the iterations of board
-    list_board.append(board)
+    list_board = [puzzle]  # keep track of all the iterations of board
+    #list_board.append(board)
     N_blocks = max(puzzle)
 
     flag = False  # change to true when complete
@@ -109,13 +109,15 @@ def unblock_me(puzzle):
         for i in range(1, N_blocks+1):
             if uf.check_can_move_block(i, board):
                 step = uf.move_block(i, board)
-                board, list_board = uf.update_board(i, board, list_board, step)
+                board = uf.update_board(i, board, step)
+                list_board.append(board)
                 solution.append("Block {}; {}".format(i,step))
+
                 # solved when block 1 is at the left edge
                 if uf.get_block_pos(1, board) == [16, 17]:
                     flag = True
 
-    return solution, list_board
+    uf.visualize_solution(list_board)
 
 
 puzzle1 = [0, 0, 0, 0, 0, 0,
@@ -140,11 +142,13 @@ puzzle3 = [2,  2,  3,  3,  4,  5,
            0,  12, 13, 14, 14, 14]
 
 
-# solution1, list_board1 = unblock_me(puzzle1)
+unblock_me(puzzle3)
+#
+# solution2, list_board2 = unblock_me(puzzle1)
+#
+# print(len(list_board2))
+# print(len(solution2))
 
-solution2, list_board2 = unblock_me(puzzle1)
+#uf.visualize_board(puzzle1)
 
-print(len(list_board2))
-print(len(solution2))
-
-uf.visualize_solution(list_board2)
+# uf.visualize_solution(list_board1)
